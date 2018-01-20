@@ -11,10 +11,27 @@ sub run {
     my ($self, @argv) = @_;
 
     my $code = do { local $/; <STDIN> };
-    my $doc = PPI::Document->new(\$code);
 
-    print $self->apply($doc);
+    if ($self->check_perl5240) {
+        print $code;
+    } else {
+        my $doc = PPI::Document->new(\$code);
+        print $self->apply($doc);
+    }
 
+    return 0;
+}
+
+sub check_perl5240 {
+    my $self = shift;
+    if (-e '.perl-version') {
+        my $src = do {
+            open my $fh, '<', '.perl-version' or die $!;
+            local $/; <$fh>;
+        };
+        chomp $src;
+        return version->new($src) >= '5.24.0';
+    }
     return 0;
 }
 
