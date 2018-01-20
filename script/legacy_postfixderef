@@ -1,0 +1,18 @@
+#!perl
+use strict;
+use warnings;
+use App::legacy_postfixderef;
+
+exit(App::legacy_postfixderef->new->run(@ARGV));
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+legacy_postfixderef - Convert postfix dereference to usual dereference for legacy Perls
+
+=head1 SYNOPSIS
+
+    $ cat Foo.pm | legacy_postfixderef
