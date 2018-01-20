@@ -60,7 +60,7 @@ subtest 'word' => sub {
 subtest 'subscript' => sub {
     test '$var->@[0..10]',      '@$var[0..10]';
     test '$var->[0]->@[0..10]', '@{$var->[0]}[0..10]';
-    test '$var->%{qw/a b c/}',  '%$var{qw/a b c/}';
+    test '$var->@{qw/a b c/}',  '@$var{qw/a b c/}';
     test '$var->%[0..10]',      '%$var[0..10]';
     test '$var->%{qw/a b c/}',  '%$var{qw/a b c/}';
     test '$var->*{SCALAR}',     '*$var{SCALAR}';
