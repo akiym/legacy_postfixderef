@@ -59,12 +59,12 @@ sub apply {
                     next;
                 }
 
-                $cast->remove_child($a);
-                $cast->remove_child($b);
-                $cast->remove_child($_) for @replace;
+                $a->remove;
+                $b->remove;
+                $_->remove for @replace;
 
                 my @back_tokens = @tokens[$i+2..$#tokens];
-                $cast->remove_child($_) for @back_tokens;
+                $_->remove for @back_tokens;
 
                 my ($cast_type) = $b->content =~ /^(.+?)\*?$/;
                 $self->_replace_cast($cast, $cast_type, @replace);
